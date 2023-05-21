@@ -26,7 +26,7 @@ jobs:
   find-out-changes:
     runs-on: ubuntu-latest
     outputs:
-      dirs: ${{ steps.changed-files.dirs }}
+      dirs: ${{ steps.changed-files.outputs.all_changed_files }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -48,7 +48,7 @@ jobs:
 
   build:
     strategy:
-      matrix: ${{fromJson(needs.find-out-changes.outputs.dirs)}}
+      matrix: ${{fromJson(needs.find-out-changes.outputs.all_changed_files)}}
     runs-on: ubuntu-latest
     permissions:
       contents: read
