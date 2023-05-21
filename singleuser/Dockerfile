@@ -9,6 +9,7 @@
 # NOTE: If the image version is updated, also update it in ci/refreeze and
 #       hub's Dockerfile!
 #
+
 FROM ubuntu:22.04 as build-stage
 
 # Build wheels
