@@ -59,8 +59,11 @@ const getDockerfileMatrixEntry = (file) => {
   const [variant] = path.dirname(file).split(path.sep).slice(-1);
 
   const version = getFullNodeVersionFromDockerfile(file);
+  
+  const folder = path.dirname(file);
 
   return {
+    folder,
     version,
     variant,
   };
