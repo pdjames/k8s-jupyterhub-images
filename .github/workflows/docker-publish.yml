@@ -30,16 +30,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v35
         with:
           dir_names: true
+          dir_names_max_depth: 1
           
       - name: print
         run: echo ${{ steps.changed-files.dirs }}
+        
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
 
   build:
     strategy:
