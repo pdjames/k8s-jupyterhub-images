@@ -127,11 +127,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const script = require(`${process.env.GITHUB_WORKSPACE}/genMatrix.js`)
-            return script(
-              ${{ steps.diff.outputs.added_files }},
-              ${{ steps.diff.outputs.modified_files }},
-              ${{ steps.diff.outputs.renamed_files }},
-            );
+            return script( ${{ steps.diff.outputs.all_changed_files }} );
 
     outputs:
       matrix: ${{ steps.generator.outputs.result }}
