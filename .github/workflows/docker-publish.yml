@@ -37,6 +37,9 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           dir_names: true
+          
+      - name: print
+        run: echo ${{ steps.changed-files.dirs }}
 
   build:
     strategy:
