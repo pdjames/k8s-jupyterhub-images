@@ -1,7 +1,6 @@
 # syntax = docker/dockerfile:1.3
 # VULN_SCAN_TIME=2023-05-08_05:14:25
 
-
 # The build stage
 # ---------------
 # This stage is building Python wheels for use in later stages by using a base
