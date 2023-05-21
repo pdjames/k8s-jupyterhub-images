@@ -48,7 +48,7 @@ jobs:
 
   build:
     strategy:
-      matrix: ${{needs.find-out-changes.outputs.all_changed_files}}
+      matrix: ${{needs.find-out-changes.outputs.dirs}}
     runs-on: ubuntu-latest
     permissions:
       contents: read
