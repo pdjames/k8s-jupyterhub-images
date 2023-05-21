@@ -38,12 +38,6 @@ jobs:
         with:
           dir_names: true
 
-  do-stuff:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.find-out-changes.outputs.dirs)}}
-    needs:
-      - find-out-changes
   build:
     strategy:
       matrix: ${{fromJson(needs.find-out-changes.outputs.dirs)}}
