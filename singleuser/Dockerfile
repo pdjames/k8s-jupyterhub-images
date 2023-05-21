@@ -41,7 +41,8 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt install software-properties-common && \
+RUN apt update && \
+    apt install software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \
     apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 && \
