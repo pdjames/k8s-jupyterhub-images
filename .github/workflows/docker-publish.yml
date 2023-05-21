@@ -23,8 +23,26 @@ env:
 
 
 jobs:
+  generate-matrix:
+    name: Generate job matrices
+    runs-on: ubuntu-latest
+    # don't forget to declare outputs here!
+    outputs:
+      matrix-folders: ${{ steps.changed-folders.outputs.changed }}
+    steps:
+      - name: Generate matrix | Folders
+        id: changed-folders
+        uses: Stockopedia/action-get-changed-files@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          foldersOnly: true # to only include folders in the output
+          format: json # either json, csv or newline
+                
   build:
-
+    needs: [ generate-matrix ]
+    strategy:
+      matrix: 
+        folder: ${{ fromJson(needs.changed-folders.outputs.changed) }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -53,7 +71,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ${{ matrix.folder }}
           platforms: linux/arm64
           push: true
           tags: user/app:latest
