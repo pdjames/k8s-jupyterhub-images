@@ -1,6 +1,5 @@
 # syntax = docker/dockerfile:1.3
 
-
 # The build stage
 # ---------------
 # This stage is building Python wheels for use in later stages by using a base
