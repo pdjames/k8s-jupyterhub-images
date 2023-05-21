@@ -39,16 +39,20 @@ jobs:
           dir_names: true
           dir_names_max_depth: 1
           files_ignore: .github
+          json: true
         
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+#       - name: List all changed files
+#         run: |
+#           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+#             echo "$file was changed"
+#           done
+          
+      - name: Echo
+        run: echo ${{ steps.changed-files.outputs.all_changed_files }}
 
   build:
     strategy:
-      matrix: ${{needs.find-out-changes.outputs.dirs}}
+      matrix: ${{ fromJson(needs.find-out-changes.outputs.dirs) }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
