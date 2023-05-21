@@ -18,11 +18,11 @@ FROM ubuntu:22.04 as build-stage
 # ephemeral docker cache (--mount=type=cache,target=${PIP_CACHE_DIR}). We use
 # the same technique for the directory /tmp/wheels.
 #
-RUN apt update && \
-    apt install software-properties-common && \
+RUN apt update -y && \
+    apt install software-properties-common -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
-    apt update && \
-    apt install python3.11 && \
+    apt update -y && \
+    apt install python3.11 -y && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
@@ -41,11 +41,11 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && \
-    apt install software-properties-common && \
+RUN apt update -y && \
+    apt install software-properties-common -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
-    apt update && \
-    apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 && \
+    apt update -y && \
+    apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 -y && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
