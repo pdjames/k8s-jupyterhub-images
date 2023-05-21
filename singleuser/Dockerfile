@@ -23,7 +23,7 @@ RUN apt update -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
     apt install python3.11 -y && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.11
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
 COPY requirements.txt requirements.txt
@@ -46,7 +46,7 @@ RUN apt update -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
     apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 -y && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.11
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
 ENV NB_USER=jovyan \
