@@ -21,7 +21,7 @@ ENV TZ=Europe/London
 # the same technique for the directory /tmp/wheels.
 #
 RUN apt update -y && \
-    apt install software-properties-common -y && \
+    apt install software-properties-common curl -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
     apt install python3.11 -y && \
@@ -45,7 +45,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 
 RUN apt update -y && \
-    apt install software-properties-common -y && \
+    apt install software-properties-common curl -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
     apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 -y && \
