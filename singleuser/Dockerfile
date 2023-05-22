@@ -24,7 +24,7 @@ RUN apt update -y && \
     apt install software-properties-common build-essential curl -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
-    apt install python3.11 -y && \
+    apt install python3.11 python3.11-dev -y && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
