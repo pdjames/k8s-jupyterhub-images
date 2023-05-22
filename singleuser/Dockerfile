@@ -11,6 +11,8 @@
 #
 
 FROM ubuntu:22.04 as build-stage
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/London
 
 # Build wheels
 #
