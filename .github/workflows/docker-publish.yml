@@ -165,4 +165,4 @@ jobs:
           context:  ${{ matrix.folder }}
           platforms: linux/arm64
           push: true
-          tags: ${{ matrix.folder }}:latest
+          tags: peterdjames/${{ matrix.folder }}:latest
