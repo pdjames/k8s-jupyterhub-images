@@ -40,6 +40,7 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
 #
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/London
 
 RUN apt update -y && \
     apt install software-properties-common -y && \
