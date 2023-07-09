@@ -23,9 +23,17 @@ RUN apt update -y && \
     apt install software-properties-common build-essential curl -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
+    apt install python3.10 python3.10-dev -y && \
     apt install python3.11 python3.11-dev -y && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
+    
+RUN apt update -y && \
+    apt install build-essential -y && \
+    apt install unzip curl rsync git nfs-common -y && \
+    apt install python3.10-venv python3.11-venv
+    
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 
 
 COPY requirements.txt requirements.txt
 ARG PIP_CACHE_DIR=/tmp/pip-cache
