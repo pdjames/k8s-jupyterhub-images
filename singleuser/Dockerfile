@@ -25,6 +25,7 @@ RUN apt update -y && \
     apt update -y && \
     apt install python3.10 python3.10-dev -y && \
     apt install python3.11 python3.11-dev -y && \
+    apt install python3-dev -y && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
     
 RUN apt update -y && \
