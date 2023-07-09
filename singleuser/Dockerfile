@@ -30,7 +30,7 @@ RUN apt update -y && \
 RUN apt update -y && \
     apt install build-essential -y && \
     apt install unzip curl rsync git nfs-common -y && \
-    apt install python3.10-venv python3.11-venv
+    apt install python3.10-venv python3.11-venv -y
     
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 
