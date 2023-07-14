@@ -92,7 +92,8 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
         -r /tmp/requirements.txt
 
 WORKDIR ${HOME}
-RUN chown -R ${NB_USER}:${NB_USER} /home/jovyan
+RUN chown -R ${NB_USER}:${NB_USER} ${HOME}
+RUN chmod -R 777 ${HOME}
 USER ${NB_USER}
 
 EXPOSE 8888
