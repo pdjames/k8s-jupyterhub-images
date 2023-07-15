@@ -62,11 +62,13 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python
 
 ENV NB_USER=jovyan \
     NB_UID=1000 \
+    NB_GID=100 \
     HOME=/home/jovyan
 RUN adduser \
         --disabled-password \
         --gecos "Default user" \
         --uid ${NB_UID} \
+        --gid $NB_GID} \
         --home ${HOME} \
         --force-badname \
         ${NB_USER}
@@ -92,7 +94,7 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
         -r /tmp/requirements.txt
 
 WORKDIR ${HOME}
-RUN chown -R ${NB_USER}:${NB_USER} ${HOME}
+RUN chown -R ${NB_UID}:${NB_GID} ${HOME}
 RUN chmod -R 777 ${HOME}
 USER ${NB_USER}
 
