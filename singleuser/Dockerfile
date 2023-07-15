@@ -68,7 +68,7 @@ RUN adduser \
         --disabled-password \
         --gecos "Default user" \
         --uid ${NB_UID} \
-        --gid $NB_GID} \
+        --gid ${NB_GID} \
         --home ${HOME} \
         --force-badname \
         ${NB_USER}
@@ -94,6 +94,7 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
         -r /tmp/requirements.txt
 
 WORKDIR ${HOME}
+RUN mkdir -p ${HOME}/.local/share/jupyter
 RUN chown -R ${NB_UID}:${NB_GID} ${HOME}
 RUN chmod -R 777 ${HOME}
 USER ${NB_USER}
