@@ -53,7 +53,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 
 RUN apt update -y && \
-    apt install software-properties-common build-essential nano curl -y && \
+    apt install software-properties-common build-essential nano curl libssl -y && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update -y && \
     apt install python3.10-dev python3.10-venv python3.10-distutils python3.10-gdbm python3.10-tk python3.10-lib2to3 python3.10 -y && \
