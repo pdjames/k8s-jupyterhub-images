@@ -58,7 +58,8 @@ RUN apt update -y && \
     apt update -y && \
     apt install python3.10-dev python3.10-venv python3.10-distutils python3.10-gdbm python3.10-tk python3.10-lib2to3 python3.10 -y && \
     apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3 python3.11 -y && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 10 && \
+    apt install distcc
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python 
 
 ENV NB_USER=jovyan \
