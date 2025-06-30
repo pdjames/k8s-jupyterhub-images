@@ -45,3 +45,4 @@ EXPOSE 8888
 
 # Final entrypoint (JupyterHub SingleUser)
 CMD ["jupyterhub-singleuser"]
+
