@@ -94,6 +94,7 @@ on:
     paths:
       - "**/Dockerfile"
       - "**/docker-entrypoint.sh"
+      - "All_pys_jupyter/Dockerfile"
       - genMatrix.js
       - ".github/workflows/build-test.yml"
 
@@ -101,6 +102,7 @@ on:
     paths:
       - "**/Dockerfile"
       - "**/docker-entrypoint.sh"
+      - "All_pys_jupyter/Dockerfile"
       - genMatrix.js
       - ".github/workflows/build-test.yml"
 
@@ -166,3 +168,26 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: peterdjames/${{ matrix.folder }}:latest
+
+  simple-build:
+    name: simple static docker build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push simple image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./All_pys_jupyter
+          file: ./All_pys_jupyter/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: peterdjames/static-image:latest
