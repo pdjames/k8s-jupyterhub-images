@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install base system utilities and build deps
 RUN apt-get update && apt-get install -y \
-    autoconf curl git wget build-essential cmake ninja-build pkg-config \
+    autoconf dh-autoreconf curl git wget build-essential cmake ninja-build pkg-config \
     zlib1g-dev libffi-dev libssl-dev libbz2-dev libreadline-dev \
     libsqlite3-dev libncurses5-dev libncursesw5-dev liblzma-dev \
     tk-dev ca-certificates unzip gnupg software-properties-common \
