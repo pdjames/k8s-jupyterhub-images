@@ -14,13 +14,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
-    python3.7-pip python3.7-dev python3.7-venv  | true
-
-RUN apt-get update && apt-get install -y \
-    python3.10-pip python3.10-dev python3.10-venv | true
-
-RUN apt-get update && apt-get install -y \
-    python3.12-pip python3.12-dev python3.12-venv \
+    python3.10-dev python3.10-venv | true \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
