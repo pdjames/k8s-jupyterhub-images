@@ -3,13 +3,26 @@ FROM ubuntu:22.04
 # Set non-interactive to avoid prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install base system utilities and deps
+# Install base system utilities and build deps
 RUN apt-get update && apt-get install -y \
-    curl git wget build-essential zlib1g-dev libffi-dev libssl-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev \
-    libncursesw5-dev liblzma-dev tk-dev ca-certificates \
-    python3-pip python3-dev python3-venv unzip gnupg software-properties-common && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    curl git wget build-essential cmake ninja-build pkg-config \
+    zlib1g-dev libffi-dev libssl-dev libbz2-dev libreadline-dev \
+    libsqlite3-dev libncurses5-dev libncursesw5-dev liblzma-dev \
+    tk-dev ca-certificates unzip gnupg software-properties-common \
+    libxml2-dev libxslt1-dev libjpeg-dev libpng-dev \
+    libopenblas-dev liblapack-dev gfortran \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    python3.7-pip python3.7-dev python3.7-venv  | true
+
+RUN apt-get update && apt-get install -y \
+    python3.10-pip python3.10-dev python3.10-venv | true
+
+RUN apt-get update && apt-get install -y \
+    python3.12-pip python3.12-dev python3.12-venv \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 
 ### --- Install Java 11, 17, 21 ---
 # Add Adoptium repo
