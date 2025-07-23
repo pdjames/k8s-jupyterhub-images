@@ -33,9 +33,10 @@ RUN curl -L -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-
     ln -s /opt/gradle-${GRADLE_VERSION}/bin/gradle /usr/local/bin/gradle && \
     rm /tmp/gradle.zip
 
-
-# Install Java 17 & 21 (Adoptium or OpenJDK)
+# Install both JDKs and register Java 21 as the default
 RUN dnf -y install java-17-openjdk java-17-openjdk-devel java-21-openjdk java-21-openjdk-devel && \
+    alternatives --install /usr/bin/java java /usr/lib/jvm/java-21-openjdk/bin/java 2 && \
+    alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-21-openjdk/bin/javac 2 && \
     alternatives --set java /usr/lib/jvm/java-21-openjdk/bin/java && \
     alternatives --set javac /usr/lib/jvm/java-21-openjdk/bin/javac
 
