@@ -3,22 +3,34 @@ FROM rockylinux:8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
 
+RUN dnf config-manager --set-enabled powertools
+
 # Install base dev and desktop tools
 RUN dnf -y update && \
+    dnf -y install dnf-utils epel-release && \
+    dnf config-manager --set-enabled powertools && \
+    dnf config-manager --enable epel && \
     dnf -y install \
-    dnf-utils epel-release \
-    gcc gcc-c++ make automake autoconf libtool \
-    git maven gradle curl wget unzip tar \
-    openssh-clients openssh-server \
-    net-tools bind-utils \
-    vim nano sudo \
-    python3 python3-pip \
-    nodejs npm \
-    docker \
-    xrdp tigervnc-server \
-    xfce4-session xfce4-panel xfce4-terminal \
-    dejavu-sans-fonts firefox && \
+        gcc gcc-c++ make automake autoconf libtool \
+        git maven curl wget unzip tar \
+        openssh-clients openssh-server \
+        net-tools bind-utils \
+        vim nano sudo \
+        python3 python3-pip \
+        nodejs npm \
+        docker \
+        xrdp tigervnc-server \
+        xfce4-session xfce4-panel xfce4-terminal \
+        dejavu-sans-fonts firefox && \
     dnf clean all
+
+ENV GRADLE_VERSION=8.7
+
+RUN curl -L -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+    unzip /tmp/gradle.zip -d /opt && \
+    ln -s /opt/gradle-${GRADLE_VERSION}/bin/gradle /usr/local/bin/gradle && \
+    rm /tmp/gradle.zip
+
 
 # Install Java 17 & 21 (Adoptium or OpenJDK)
 RUN dnf -y install java-17-openjdk java-17-openjdk-devel java-21-openjdk java-21-openjdk-devel && \
