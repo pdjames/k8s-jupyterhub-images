@@ -47,3 +47,4 @@ EXPOSE 3389
 
 # Start xrdp on container start
 CMD ["/usr/sbin/xrdp-sesman", "--nodaemon"]
+
