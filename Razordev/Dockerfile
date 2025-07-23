@@ -1,8 +1,11 @@
 FROM registry.access.redhat.com/ubi8/ubi
 
 # Install basic build tools and dev packages
-RUN dnf -y groupinstall "Development Tools" && \
-    dnf -y install \
+RUN dnf -y install \
+    gcc gcc-c++ make automake autoconf libtool \
+    gdb strace patch diffutils 
+    
+RUN dnf -y install \
     epel-release \
     git maven gradle curl wget unzip tar sudo \
     openssh-clients openssh-server \
