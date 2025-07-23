@@ -195,7 +195,7 @@ jobs:
 
 
   java-build:
-    name: simple static docker build
+    name: dev container docker build
     runs-on: ubuntu-latest
 
     steps:
