@@ -3,6 +3,8 @@ FROM rockylinux:8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
 
+RUN dnf -y install dnf-plugins-core
+
 RUN dnf config-manager --set-enabled powertools
 
 # Install base dev and desktop tools
