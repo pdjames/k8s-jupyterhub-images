@@ -43,6 +43,12 @@ RUN dnf -y install java-17-openjdk java-17-openjdk-devel java-21-openjdk java-21
 # Setup user
 RUN useradd -m dev && echo "dev:dev" | chpasswd && echo "dev ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+RUN mkdir /home/dev/startup_script/
+WORKDIR /home/dev/startup_script/
+
+COPY startup.sh /home/dev/startup_script/startup.sh
+RUN chmod +x /home/dev/startup_script/startup.sh
+
 # Set default XFCE session
 RUN echo "startxfce4" > /home/dev/.Xclients && \
     chmod +x /home/dev/.Xclients && \
@@ -60,4 +66,4 @@ RUN systemctl enable xrdp && \
     systemctl enable sshd
 
 EXPOSE 3389
-CMD ["/usr/sbin/xrdp-sesman", "--nodaemon"]
+CMD ["/home/dev/startup_script/startup.sh"]
