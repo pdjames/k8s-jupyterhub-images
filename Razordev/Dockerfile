@@ -46,6 +46,7 @@ RUN useradd -m dev && echo "dev:dev" | chpasswd && echo "dev ALL=(ALL) NOPASSWD:
 RUN mkdir /home/dev/startup_script/
 WORKDIR /home/dev/startup_script/
 
+# Copy startup script
 COPY startup.sh /home/dev/startup_script/startup.sh
 RUN chmod +x /home/dev/startup_script/startup.sh
 
